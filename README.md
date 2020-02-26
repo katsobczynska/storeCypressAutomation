@@ -1,0 +1,1 @@
+# storeCypressAutomation

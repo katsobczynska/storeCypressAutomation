@@ -1,0 +1,21 @@
+{
+  "name": "storecypressautomation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "storeCypressAutomation"
+  },
+  "author": "KatarinaSobczynska",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "^4.0.2",
+    "cypress-xpath": "^1.4.0",
+    "mocha": "^7.1.0"
+  }
+}

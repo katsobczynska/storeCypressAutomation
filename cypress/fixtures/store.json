@@ -1,4 +1,13 @@
 {
   "username": "katarinatestuser",
-  "password": "p4$$w0rD"
+  "password": "p4$$w0rD",
+  "expectedProductNames": ["Samsung galaxy s7", "Nexus 6"],
+  "cartName": "Katarina Test",
+  "cartCountry": "United Kingdom",
+  "cartCity": "London",
+  "cartCreditCard": "1111 2222 3333 4444 5555",
+  "cartYear": "2020",
+  "cartMonth": "06"
+ 
+  
 }

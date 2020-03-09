@@ -11,7 +11,7 @@ class ProductPage
         return cy.get('.success > :nth-child(4) > a')
     }
 
-
+    
 
 
 

@@ -11,14 +11,11 @@ describe('Log in - positive scenario', function () {
     it('Takes user through successfull log in process', function () {
         const mainPage = new MainPage()
         cy.visit(Cypress.env('url'))
+        
         mainPage.getLogin().click()
-        mainPage.getLoginUsername().click().type(this.data.username, {
-            delay: 150
-        })
         cy.wait(1000)
-        mainPage.getLoginPassword().click().type(this.data.password, {
-            delay: 150
-        })
+        mainPage.getLoginUsername().type(this.data.username)
+        mainPage.getLoginPassword().type(this.data.password)
         mainPage.getLoginButton().click()
         mainPage.getLogOut().should('be.visible')
     })
@@ -35,9 +32,9 @@ describe('Log in - negative scenario1: empty username', function () {
         const mainPage = new MainPage()
         cy.visit(Cypress.env('url'))
         mainPage.getLogin().click()
-        mainPage.getLoginPassword().click().type(this.data.password, {
-            delay: 100
-        })
+        cy.wait(1000)
+        mainPage.getLoginPassword().type(this.data.password)
+        
         mainPage.getLoginButton().click()
         cy.on('window:alert', (str) => {
             expect(str).to.equal('Please fill out Username and Password.')
@@ -59,9 +56,8 @@ describe('Log in - negative scenario2: empty password', function () {
         const mainPage = new MainPage()
         cy.visit(Cypress.env('url'))
         mainPage.getLogin().click()
-        mainPage.getLoginUsername().click().type(this.data.username, {
-            delay: 100
-        })
+        cy.wait(1000)
+        mainPage.getLoginUsername().click().type(this.data.username)
         mainPage.getLoginButton().click()
         cy.on('window:alert', (str) => {
             expect(str).to.equal('Please fill out Username and Password.')
@@ -77,6 +73,7 @@ it('Validates page behaviour when username & password are left empty', function 
     const mainPage = new MainPage()
     cy.visit(Cypress.env('url'))
     mainPage.getLogin().click()
+    cy.wait(1000)
     mainPage.getLoginButton().click()
     cy.on('window:alert', (str) => {
         expect(str).to.equal('Please fill out Username and Password.')
@@ -97,8 +94,9 @@ it('Validates page behaviour when user inserts wrong username', function() {
     const mainPage = new MainPage()
     cy.visit(Cypress.env('url'))
     mainPage.getLogin().click()
+    cy.wait(1000)
     mainPage.getLoginUsername().click().type('wrongusername')
-    mainPage.getLoginPassword().click().type(this.data.password, {delay:100})
+    mainPage.getLoginPassword().click().type(this.data.password)
     mainPage.getLoginButton().click()
     cy.on('window:alert', (str) => {
         expect(str).to.equal('User does not exist.')
@@ -118,8 +116,9 @@ it('Validates page behaviour when user inserts wrong password', function() {
     const mainPage = new MainPage()
     cy.visit(Cypress.env('url'))
     mainPage.getLogin().click()
-    mainPage.getLoginUsername().click().type(this.data.username, {delay:100})
-    mainPage.getLoginPassword().click().type('wrongpass', {delay:100})
+    cy.wait(1000)
+    mainPage.getLoginUsername().click().type(this.data.username)
+    mainPage.getLoginPassword().click().type('wrongpass')
     mainPage.getLoginButton().click()
     cy.on('window:alert', (str) => {
         expect(str).to.equal('Wrong password.')
@@ -136,13 +135,9 @@ describe('Log in - positive scenario2: log out', function() {
         const mainPage = new MainPage()
         cy.visit(Cypress.env('url'))
         mainPage.getLogin().click()
-        mainPage.getLoginUsername().click().type(this.data.username, {
-            delay: 150
-        })
         cy.wait(1000)
-        mainPage.getLoginPassword().click().type(this.data.password, {
-            delay: 150
-        })
+        mainPage.getLoginUsername().click().type(this.data.username)
+        mainPage.getLoginPassword().click().type(this.data.password)
         mainPage.getLoginButton().click()
         cy.wait(1000)
         mainPage.getLogOut().click()
@@ -154,3 +149,6 @@ describe('Log in - positive scenario2: log out', function() {
 })
 })
 })
+
+
+//todo: cy.wait before type

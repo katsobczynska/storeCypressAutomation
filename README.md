@@ -1,3 +1,5 @@
+Demoblaze.com store Cypress Automation
+
 
 Collection of Cypress-based test suites for demo shopping website https://www.demoblaze.com/, covering  scenarios such as authentication (log in & sign up), shopping and navigation.
 

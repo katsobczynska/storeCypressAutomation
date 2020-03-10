@@ -1,48 +1,37 @@
-class CartPage 
-{
+class CartPage {
 
-    getCheckoutButton() 
-    {
+    getCheckoutButton() {
         return cy.get('.col-lg-1 > .btn')
     }
-    getPurchaseButton()
-    {
+    getPurchaseButton() {
         return cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary')
     }
-    getCancelCheckout()
-    {
+    getCancelCheckout() {
         return cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-secondary')
     }
-    
-    getPurchaseButton()
-    {
+
+    getPurchaseButton() {
         return cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary')
     }
 
-    getCheckoutName()
-    {
+    getCheckoutName() {
         return cy.get('#name')
     }
 
-    getCheckoutCountry()
-    {
+    getCheckoutCountry() {
         return cy.get('#country')
     }
-    getCheckoutCity()
-    {
+    getCheckoutCity() {
         return cy.get('#city')
     }
-    getCheckoutCard()
-    {
+    getCheckoutCard() {
         return cy.get('#card')
     }
 
-    getCheckoutMonth()
-    {
+    getCheckoutMonth() {
         return cy.get('#month')
     }
-    getCheckoutYear()
-    {
+    getCheckoutYear() {
         return cy.get('#year')
     }
 }

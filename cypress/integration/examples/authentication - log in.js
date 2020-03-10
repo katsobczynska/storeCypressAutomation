@@ -1,5 +1,9 @@
 /// <reference types = 'Cypress'/>
 
+//In this test suite cy.wait(1000) command it used as a workaround for a bug that originates from Cypress (https://github.com/cypress-io/cypress/issues/5480)
+
+
+
 import MainPage from './pageObjects/mainPage'
 
 describe('Log in - positive scenario', function () {
@@ -11,7 +15,7 @@ describe('Log in - positive scenario', function () {
     it('Takes user through successfull log in process', function () {
         const mainPage = new MainPage()
         cy.visit(Cypress.env('url'))
-        
+
         mainPage.getLogin().click()
         cy.wait(1000)
         mainPage.getLoginUsername().type(this.data.username)
@@ -34,7 +38,7 @@ describe('Log in - negative scenario1: empty username', function () {
         mainPage.getLogin().click()
         cy.wait(1000)
         mainPage.getLoginPassword().type(this.data.password)
-        
+
         mainPage.getLoginButton().click()
         cy.on('window:alert', (str) => {
             expect(str).to.equal('Please fill out Username and Password.')
@@ -82,73 +86,70 @@ it('Validates page behaviour when username & password are left empty', function 
 
 })
 
-describe('Log in - negative scenario4: wrong username',function() {
-    before(function() {
-        cy.fixture('store').then(function (data) {
-            this.data = data
-        })
-
-
-    })
-it('Validates page behaviour when user inserts wrong username', function() {
-    const mainPage = new MainPage()
-    cy.visit(Cypress.env('url'))
-    mainPage.getLogin().click()
-    cy.wait(1000)
-    mainPage.getLoginUsername().click().type('wrongusername')
-    mainPage.getLoginPassword().click().type(this.data.password)
-    mainPage.getLoginButton().click()
-    cy.on('window:alert', (str) => {
-        expect(str).to.equal('User does not exist.')
-    })
-    mainPage.getCancelLogin().click()
-})
-
-describe('Log in - negative scenario5: wrong password',function() {
-    before(function() {
-        cy.fixture('store').then(function (data) {
-            this.data = data
-        })
-
-
-    })
-it('Validates page behaviour when user inserts wrong password', function() {
-    const mainPage = new MainPage()
-    cy.visit(Cypress.env('url'))
-    mainPage.getLogin().click()
-    cy.wait(1000)
-    mainPage.getLoginUsername().click().type(this.data.username)
-    mainPage.getLoginPassword().click().type('wrongpass')
-    mainPage.getLoginButton().click()
-    cy.on('window:alert', (str) => {
-        expect(str).to.equal('Wrong password.')
-    })
-})
-
-describe('Log in - positive scenario2: log out', function() {
+describe('Log in - negative scenario4: wrong username', function () {
     before(function () {
         cy.fixture('store').then(function (data) {
             this.data = data
         })
+
+
     })
-    it('Takes user through successfull log out process', function () {
+    it('Validates page behaviour when user inserts wrong username', function () {
         const mainPage = new MainPage()
         cy.visit(Cypress.env('url'))
         mainPage.getLogin().click()
         cy.wait(1000)
-        mainPage.getLoginUsername().click().type(this.data.username)
+        mainPage.getLoginUsername().click().type('wrongusername')
         mainPage.getLoginPassword().click().type(this.data.password)
         mainPage.getLoginButton().click()
-        cy.wait(1000)
-        mainPage.getLogOut().click()
-        mainPage.getLogin().should('be.visible')
+        cy.on('window:alert', (str) => {
+            expect(str).to.equal('User does not exist.')
+        })
+        mainPage.getCancelLogin().click()
+    })
+
+    describe('Log in - negative scenario5: wrong password', function () {
+        before(function () {
+            cy.fixture('store').then(function (data) {
+                this.data = data
+            })
+
+
+        })
+        it('Validates page behaviour when user inserts wrong password', function () {
+            const mainPage = new MainPage()
+            cy.visit(Cypress.env('url'))
+            mainPage.getLogin().click()
+            cy.wait(1000)
+            mainPage.getLoginUsername().click().type(this.data.username)
+            mainPage.getLoginPassword().click().type('wrongpass')
+            mainPage.getLoginButton().click()
+            cy.on('window:alert', (str) => {
+                expect(str).to.equal('Wrong password.')
+            })
+        })
+
+        describe('Log in - positive scenario2: log out', function () {
+            before(function () {
+                cy.fixture('store').then(function (data) {
+                    this.data = data
+                })
+            })
+            it('Takes user through successfull log out process', function () {
+                const mainPage = new MainPage()
+                cy.visit(Cypress.env('url'))
+                mainPage.getLogin().click()
+                cy.wait(1000)
+                mainPage.getLoginUsername().click().type(this.data.username)
+                mainPage.getLoginPassword().click().type(this.data.password)
+                mainPage.getLoginButton().click()
+                cy.wait(1000)
+                mainPage.getLogOut().click()
+                mainPage.getLogin().should('be.visible')
+            })
+
+
+
+        })
+    })
 })
-
-
-
-})
-})
-})
-
-
-//todo: cy.wait before type

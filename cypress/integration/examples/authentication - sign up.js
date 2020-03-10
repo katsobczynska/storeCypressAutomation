@@ -3,6 +3,8 @@
 import MainPage from './pageObjects/mainPage'
 
 //Positve sign up flow is not covered so tested page is not overloaded with useless data
+//In this test suite cy.wait(1000) command it used as a workaround for a bug that originates from Cypress (https://github.com/cypress-io/cypress/issues/5480)
+
 
 describe('Sign up - negative scenario1: user already exists', function () {
     before(function () {
